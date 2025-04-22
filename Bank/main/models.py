@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 import random
 
@@ -9,6 +10,7 @@ def Tgenerate_number():
 
 
 class Owner(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     Oaccount = models.CharField(max_length=9, unique=True, default=Ogenerate_number)
     Oname = models.CharField('Name', max_length=15)
     Osecondname = models.CharField('SecondName', max_length=25)
