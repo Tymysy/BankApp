@@ -4,11 +4,11 @@ from .models import Owner
 
 class UserRegisterForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
-    Oname = forms.CharField()
-    Osecondname = forms.CharField()
-    Ostate = forms.CharField()
-    Onumber = forms.CharField()
-    Obirth = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    Name = forms.CharField()
+    Secondname = forms.CharField()
+    State = forms.CharField()
+    Number = forms.CharField()
+    Birth = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
 
     class Meta:
         model = User

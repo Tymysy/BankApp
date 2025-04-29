@@ -17,11 +17,11 @@ def register(request):
 
             Owner.objects.create(
                 user=user,
-                Oname=form.cleaned_data['Oname'],
-                Osecondname=form.cleaned_data['Osecondname'],
-                Ostate=form.cleaned_data['Ostate'],
-                Onumber=form.cleaned_data['Onumber'],
-                Obirth=form.cleaned_data['Obirth'],
+                Name=form.cleaned_data['Name'],
+                SecondName=form.cleaned_data['Second Name'],
+                State=form.cleaned_data['State'],
+                Number=form.cleaned_data['Number'],
+                Birth=form.cleaned_data['Birth'],
             )
 
             login(request, user)

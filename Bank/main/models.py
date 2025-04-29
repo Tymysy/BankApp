@@ -11,15 +11,15 @@ def Tgenerate_number():
 
 class Owner(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    Oaccount = models.CharField(max_length=9, unique=True, default=Ogenerate_number)
-    Oname = models.CharField('Name', max_length=15)
-    Osecondname = models.CharField('SecondName', max_length=25)
-    Ostate = models.CharField('Country', max_length=25)
-    Ophone_number = models.CharField('Number', max_length=10)
-    Obirth = models.DateField('Birth')
+    account = models.CharField(max_length=9, unique=True, default=Ogenerate_number)
+    name = models.CharField('Name', max_length=15)
+    SecondName = models.CharField('SecondName', max_length=25)
+    State = models.CharField('Country', max_length=25)
+    Number = models.CharField('Number', max_length=10)
+    Birth = models.DateField('Birth')
 
     def __str__(self):
-        return f'{self.Oaccount} - {self.Oname} {self.Osecondname}'
+        return f'{self.account} - {self.name} {self.SecondName}'
 
 class Transactions(models.Model):
     Tvalue = models.DecimalField('Amount', max_digits=12, decimal_places=2)
