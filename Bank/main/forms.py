@@ -5,7 +5,7 @@ from .models import Owner
 class UserRegisterForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
     Name = forms.CharField()
-    Secondname = forms.CharField()
+    SecondName = forms.CharField()
     State = forms.CharField()
     Number = forms.CharField()
     Birth = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))

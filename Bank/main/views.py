@@ -18,7 +18,7 @@ def register(request):
             Owner.objects.create(
                 user=user,
                 Name=form.cleaned_data['Name'],
-                SecondName=form.cleaned_data['Second Name'],
+                SecondName=form.cleaned_data['SecondName'],
                 State=form.cleaned_data['State'],
                 Number=form.cleaned_data['Number'],
                 Birth=form.cleaned_data['Birth'],
