@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login, authenticate
 from .models import Transactions
 from .models import Owner
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, ProfileForm
+from django.contrib import messages
 
 def index(request):
     return render(request, 'main/index.html')
@@ -36,4 +37,14 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def my_profile(request):
     owner = request.user.owner
-    return render(request, 'main/profile.html', {'owner': owner})
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=owner)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Data updated successfully.")
+            return redirect('owner_profile')
+    else:
+        form = ProfileForm(instance=owner)
+
+    return render(request, 'main/profile.html', {'form': form})

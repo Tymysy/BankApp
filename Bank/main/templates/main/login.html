@@ -1,0 +1,15 @@
+{% extends 'main/pattern.html' %}
+
+{% block title %}Log in{% endblock %}
+
+{% block content %}
+
+<h2>Authorization</h2>
+<form class="log-in" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+    <a href="{% url 'register' %}">###</a>
+</form>
+
+{% endblock %}

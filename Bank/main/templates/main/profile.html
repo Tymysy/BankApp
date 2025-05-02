@@ -1,13 +1,13 @@
 {% extends 'main/pattern.html' %}
 
 {% block content %}
-<div class="container">
-    <p><strong>Name:</strong> {{ owner.Oname }}</p>
-    <p><strong>Second name:</strong> {{ owner.Osecondname }}</p>
-    <p><strong>Account number:</strong> {{ owner.Oaccount }}</p>
-    <p><strong>Phone number:</strong> {{ owner.Onumber }}</p>
-    <p><strong>Country:</strong> {{ owner.Ostate }}</p>
-    <p><strong>Birthday:</strong> {{ owner.Obirth|date:"d.m.Y" }}</p>
+<div class="container-info">
+    <h2>My Profile</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn-primary">Save</button>
+    </form>
 </div>
 
 
@@ -26,8 +26,8 @@
             {% for tx in transactions %}
             <tr>
                 <td>{{ tx.Tdate|date:"d.m.Y H:i" }}</td>
-                <td>{{ tx.sender.Oname }} {{ tx.sender.Osecondname }}</td>
-                <td>{{ tx.receiver.Oname }} {{ tx.receiver.Osecondname }}</td>
+                <td>{{ tx.sender.Name }} {{ tx.sender.SecondName }}</td>
+                <td>{{ tx.receiver.Name }} {{ tx.receiver.SecondName }}</td>
                 <td>{{ tx.Tvalue }} ₽</td>
                 <td>{{ tx.Tnumber }}</td>
             </tr>

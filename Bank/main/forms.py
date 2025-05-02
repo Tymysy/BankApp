@@ -13,3 +13,15 @@ class UserRegisterForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'password', 'email']
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Owner
+        fields = ['Name', 'SecondName', 'account', 'Number', 'State', 'Birth']
+        widgets = {
+            'Birth': forms.DateInput(attrs={'type': 'date'}),
+        }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['account'].widget.attrs['readonly'] = True
