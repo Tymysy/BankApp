@@ -68,14 +68,6 @@ header {
     color: black;
 }
 
-h2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10%;
-    margin-bottom: 20px;
-}
-
 .log-in {
     display: flex;
     flex-direction: column;
@@ -89,16 +81,82 @@ h2 {
     align-items: center;
 }
 
-.container-info {
-    margin-top: 80px;
-    margin-left: 50px;
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+}
+
+.profile-container h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-weight: 900;
+    color: #fff;
+}
+
+.profile-container form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    padding: 10px;
+    align-items: center;
     gap: 10px;
+}
+
+.profile-container form label {
+    display: flex;
+    color: #F7DC6F;
+    font-variant: small-caps;
+    font-weight: 700;
+    margin-bottom: 5px;
+    justify-content: center;
+
+}
+
+.profile-container form input, select {
+    display: flex;
+    border: none;
+    width: 250px;
+    font-weight: 700;
     border-radius: 10px;
+    padding: 10px;
+}
+
+.profile-container button{
+    margin-top: 15px;
+    width: 100px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.profile-container button:hover {
+    color: #fff;
+    background-color: transparent;
+}
+
+.container-info, .make-transactions{
+    background-color: #2c2c2c;
+    margin-top: 100px;
+    max-width: 400px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.make-transactions form label {
+    margin: 0;
+}
+
+.make-transactions form{
+    gap: 0;
 }
 
 .form-register {

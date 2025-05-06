@@ -1,9 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login, authenticate
-from .models import Transactions
-from .models import Owner
-from .forms import UserRegisterForm, ProfileForm
-from django.contrib import messages
+from .models import Owner, Transactions
+from django.utils import timezone
+from .forms import UserRegisterForm, ProfileForm, TransactionForm
 
 def index(request):
     return render(request, 'main/index.html')
@@ -37,14 +36,22 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def my_profile(request):
     owner = request.user.owner
+    profile_form = ProfileForm(request.POST or None, instance=owner)
+    transaction_form = TransactionForm(request.POST or None, sender=owner)
 
     if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=owner)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Data updated successfully.")
+        if 'save_profile' in request.POST and profile_form.is_valid():
+            profile_form.save()
             return redirect('owner_profile')
-    else:
-        form = ProfileForm(instance=owner)
 
-    return render(request, 'main/profile.html', {'form': form})
+        if 'create_transaction' in request.POST and transaction_form.is_valid():
+            transaction = transaction_form.save(commit=False)
+            transaction.sender = owner
+            transaction.Tdate = timezone.now()
+            transaction.save()
+            return redirect('owner_profile')
+
+    return render(request, 'main/profile.html', {
+        'form': profile_form,
+        'transaction_form': transaction_form
+    })
