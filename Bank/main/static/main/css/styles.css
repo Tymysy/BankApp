@@ -24,6 +24,21 @@ header {
     z-index: 99;
 }
 
+form input:hover, select:hover{
+    box-shadow: 0 0 20px #2c2c2c;
+}
+
+h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6rem;
+    margin-bottom: 3rem;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #2c2c2c;
+}
+
 .logo {
     margin-left: 20px;
     width: 64px;
@@ -100,7 +115,7 @@ header {
     color: #fff;
 }
 
-.profile-container form {
+form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -108,28 +123,40 @@ header {
     gap: 10px;
 }
 
-.profile-container form label {
+form label {
     display: flex;
-    color: #F7DC6F;
+    color: #2c2c2c;
     font-variant: small-caps;
+    font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 5px;
     justify-content: center;
-
 }
 
-.profile-container form input, select {
+.profile-container form label {
+    color: #F7DC6F;
+}
+
+form input, select {
     display: flex;
     border: none;
     width: 250px;
     font-weight: 700;
     border-radius: 10px;
     padding: 10px;
+    transition: .3s ease;
+}
+
+.profile-container form input:hover, select:hover{
+    box-shadow: 0 0 15px #f5f7fa;
 }
 
 .profile-container button{
     margin-top: 15px;
     width: 100px;
+    color: #f5f7fa;
+    background-color: #2c2c2c;
+    font-weight: 900;
     padding: 10px;
     border: none;
     border-radius: 10px;
@@ -138,8 +165,9 @@ header {
 }
 
 .profile-container button:hover {
-    color: #fff;
-    background-color: transparent;
+    color: #2c2c2c;
+    background-color: #f5f7fa;
+    box-shadow: 0 0 25px #f5f7fa;
 }
 
 .container-info, .make-transactions{
@@ -159,9 +187,24 @@ header {
     gap: 0;
 }
 
-.form-register {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.sub{
+    width: 150px;
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #2c2c2c;
+    border: none;
+    background-color: transparent;
+    transition: .3s ease;
+}
+
+.sub:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: #2c2c2c;
+    border: 2px solid #F7DC6F;
+    box-shadow: 0 0 20px #F7DC6F;
+    color: #f5f7fa;
 }

@@ -3,7 +3,7 @@
 {% block title %}Registration{% endblock %}
 
 {% block content %}
-<h2>Registration</h2>
+<h2 class="auth">Registration</h2>
 
 <form class="form-register" method="POST" novalidate>
   {% csrf_token %}
@@ -12,13 +12,10 @@
     <div>
       <label for="{{ field.id_for_label }}">{{ field.label }}</label>
       {{ field }}
-      {% for error in field.errors %}
-        <p style="color: red;">{{ error }}</p>
-      {% endfor %}
     </div>
   {% endfor %}
 
-  <button type="submit">Register</button>
+  <button type="submit" class="sub">Register</button>
 </form>
 
 <p class="log-url">

@@ -1,6 +1,6 @@
 {% extends 'main/pattern.html' %}
 
-{% block title %}Log in{% endblock %}
+{% block title %}Authorization{% endblock %}
 
 {% block content %}
 
@@ -8,8 +8,8 @@
 <form class="log-in" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Login</button>
-    <a href="{% url 'register' %}">###</a>
+    <button type="submit" class="sub">Login</button>
+    <a href="{% url 'register' %}">Registration</a>
 </form>
 
 {% endblock %}
