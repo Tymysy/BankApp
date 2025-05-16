@@ -307,3 +307,12 @@ form input, select {
     margin-bottom: 10px;
     cursor: default;
 }
+
+.slogan{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-variant:small-caps;
+    font-size: 1.3rem;
+    color: #F7DC6F;
+}
