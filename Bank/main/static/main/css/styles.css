@@ -90,12 +90,6 @@ h2{
     align-items: center;
 }
 
-.log-url {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .profile-container {
     display: flex;
     flex-direction: row;
@@ -207,4 +201,109 @@ form input, select {
     border: 2px solid #F7DC6F;
     box-shadow: 0 0 20px #F7DC6F;
     color: #f5f7fa;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 32px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.urls-auth{
+    text-decoration: none;
+    color: red;
+    font-weight: 900;
+    font-size: 1.1rem;
+    transition: .3s;
+}
+
+.urls-auth:hover{
+    color: #F7DC6F;
+}
+
+.transaction-section {
+  background-color: #2c2c2c;
+  color: #fff;
+  padding: 40px;
+  border-radius: 25px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 40px auto;
+  box-sizing: border-box;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  font-family: 'Georgia', serif;
+}
+
+.transaction-section h1 {
+  text-align: center;
+  color: #F7DC6F;
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.transaction-section table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1e1e1e;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.transaction-section th,
+.transaction-section td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #444;
+  font-size: 16px;
+  font-family: 'Georgia', serif;
+}
+
+.transaction-section th {
+  color: #F7DC6F;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.transaction-section tbody tr:hover {
+  background-color: #333;
+  transition: 0.3s;
+}
+
+.transaction-section .pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.transaction-section .pagination a,
+.transaction-section .pagination span {
+  color: #F7DC6F;
+  margin: 0 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+}
+
+.transaction-section .pagination .current {
+  color: #fff;
+  background-color: #444;
+  padding: 6px 12px;
+  border-radius: 5px;
+}
+
+.balance{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-variant: small-caps;
+    color: red;
+    font-weight: 800;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    cursor: default;
 }

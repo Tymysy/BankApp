@@ -17,6 +17,7 @@ class Owner(models.Model):
     State = models.CharField('Country', max_length=25)
     Number = models.CharField('Number', max_length=10)
     Birth = models.DateField('Birth')
+    balance = models.DecimalField(default=0, max_digits=12, decimal_places=2)
 
     def __str__(self):
         return f'{self.account} - {self.Name} {self.SecondName}'

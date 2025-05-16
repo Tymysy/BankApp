@@ -1,7 +1,11 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth import login, authenticate
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth import login
 from .models import Owner, Transactions
+from django.core.paginator import Paginator
+from django.db.models import Q
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, ProfileForm, TransactionForm
 
 def index(request):
@@ -31,13 +35,21 @@ def register(request):
 
     return render(request, 'main/register.html', {'form': form})
 
-from django.contrib.auth.decorators import login_required
+
 
 @login_required
 def my_profile(request):
     owner = request.user.owner
     profile_form = ProfileForm(request.POST or None, instance=owner)
     transaction_form = TransactionForm(request.POST or None, sender=owner)
+
+    transactions_list = Transactions.objects.filter(
+        Q(sender=owner) | Q(receiver=owner)
+    ).order_by('-Tdate')
+
+    paginator = Paginator(transactions_list, 10)
+    page_number = request.GET.get("page")
+    transactions = paginator.get_page(page_number)
 
     if request.method == 'POST':
         if 'save_profile' in request.POST and profile_form.is_valid():
@@ -48,10 +60,36 @@ def my_profile(request):
             transaction = transaction_form.save(commit=False)
             transaction.sender = owner
             transaction.Tdate = timezone.now()
+
+            if transaction.receiver == owner:
+                messages.error(request, "You cannot send money to yourself.")
+                return redirect('owner_profile')
+
+            if transaction.Tvalue <= 0:
+                messages.error(request, "Amount must be positive.")
+                return redirect('owner_profile')
+
+            owner = Owner.objects.get(pk=owner.pk)
+            receiver = Owner.objects.get(pk=transaction.receiver.pk)
+
+            if owner.balance < transaction.Tvalue:
+                messages.error(request, "Not enough balance.")
+                return redirect('owner_profile')
+
+            owner.balance -= transaction.Tvalue
+            receiver.balance += transaction.Tvalue
+
+            owner.save()
+            receiver.save()
+
             transaction.save()
+
+            messages.success(request, "Transaction completed successfully.")
             return redirect('owner_profile')
 
     return render(request, 'main/profile.html', {
         'form': profile_form,
-        'transaction_form': transaction_form
+        'transaction_form': transaction_form,
+        'transactions': transactions,
+        'balance': owner.balance,
     })
