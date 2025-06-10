@@ -316,3 +316,8 @@ form input, select {
     font-size: 1.3rem;
     color: #F7DC6F;
 }
+
+.features li{
+    display: flex;
+    justify-content: center;
+}
